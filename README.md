@@ -57,7 +57,7 @@ sudo sysctl -w vm.nr_hugepages=128
 ### Build [SPDK](https://spdk.io/doc/getting_started.html) in the Parent Directory:
 
 ```
-git clone --branch v22.09 https://github.com/spdk/spdk spdk --recursive spdk-v22.09
+git clone --branch v22.09 https://github.com/spdk/spdk --recursive spdk-v22.09
 cd spdk-v22.09/
 sudo scripts/pkgdep.sh
 ./configure --with-virtio --with-vhost
@@ -79,7 +79,9 @@ For more extensive information about attached devices:
 sudo ./build/examples/identify
 ```
 
-This will show the NVMe disks (controllers) along with their addresses, which will resemble `0000:2c:00.0`. The address list in [src/column_reader.cpp](src/column_reader.cpp) must be updated to reflect the addresses that will be used. 
+This will show the NVMe disks (controllers) along with their addresses, which will resemble `0000:2c:00.0`. The address list in [src/column_reader.cpp](src/column_reader.cpp) must be updated to reflect the addresses that will be used.
+
+In addition, if you have a different number of drives than the reference configuration, then you must update `NUM_CONTROLLERS` in [/filecoin_pc1/src/sealing/constants.hpp](/filecoin_pc1/src/sealing/constants.hpp)
 
 **The drive configuration for PC2 must match PC1 for correct functionality.**
 
